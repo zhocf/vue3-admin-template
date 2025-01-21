@@ -1,0 +1,7 @@
+@import "./css/blobal.css";
+@import "./css/flex.css";
+@import "./theme/default.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

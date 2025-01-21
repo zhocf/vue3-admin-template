@@ -1,0 +1,40 @@
+{
+    "private": true,
+    "name": "vue3-admin-template",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "pnpm run  --filter app  dev"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "workspaces": [
+        "packages/*"
+    ],
+    "dependencies": {
+        "@zmin/common-ui": "workspace:^",
+        "@zmin/layouts": "workspace:^",
+        "@zmin/styles": "workspace:^",
+        "axios": "^1.7.9",
+        "browser-md5-file": "^1.1.1",
+        "echarts": "^5.6.0",
+        "element-plus": "^2.9.3",
+        "mockjs": "^1.1.0",
+        "pinia": "^2.3.0",
+        "pinia-plugin-persist": "^1.0.0",
+        "vite-plugin-mock": "^3.0.2",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.0"
+    },
+    "devDependencies": {
+        "@iconify/vue": "^4.3.0",
+        "@types/node": "^22.10.2",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "lerna": "^8.1.9",
+        "sass": "^1.83.4",
+        "typescript": "~5.6.3",
+        "vite": "^6.0.5",
+        "vue-tsc": "^2.1.10"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "@zmin/common-ui",
+    "version": "1.0.0",
+    "description": "> TODO: description",
+    "license": "ISC",
+    "main": "src/index.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhocf/vue3-admin-template.git"
+    },
+    "scripts": {
+        "test": "node ./__tests__/common-ui.test.js"
+    },
+    "bugs": {
+        "url": "https://github.com/zhocf/vue3-admin-template/issues"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "@zmin/styles",
+    "version": "1.0.0",
+    "homepage": "https://github.com/zhocf/vue3-admin-template#readme",
+    "license": "MIT",
+    "main": "src/index.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhocf/vue3-admin-template.git"
+    }
+}

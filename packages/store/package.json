@@ -1,0 +1,26 @@
+{
+  "name": "stores",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "zhutao <1812073942@qq.com>",
+  "homepage": "https://github.com/zhocf/vue3-admin-template#readme",
+  "license": "ISC",
+  "main": "lib/store.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhocf/vue3-admin-template.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/store.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/zhocf/vue3-admin-template/issues"
+  }
+}
