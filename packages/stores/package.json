@@ -5,13 +5,13 @@
   "author": "zhutao <1812073942@qq.com>",
   "homepage": "https://github.com/zhocf/vue3-admin-template#readme",
   "license": "ISC",
-  "main": "lib/store.js",
+    "main": "",
   "directories": {
-    "lib": "lib",
+      "lib": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+      "src"
   ],
   "repository": {
     "type": "git",

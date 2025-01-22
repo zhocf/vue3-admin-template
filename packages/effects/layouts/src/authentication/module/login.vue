@@ -9,16 +9,35 @@ const emit = defineEmits<{
 const formRef = ref()
 const formData = reactive({
     account: '',
-    password: ''
+    password: '',
 })
+//效验
+const isDone = ref<boolean>(false)
+
+// 自定义验证规则
+const captchaValidator = (_: any, value: any, callback: (error?: Error) => void) => {
+    if (!isDone.value) {
+        callback(new Error("请完成验证码验证"));
+    } else {
+        callback();
+    }
+};
+
 
 const rules = reactive({
     account: [{required: true, message: '请输入用户名'}],
-    password: [{required: true, message: '请输入密码'}]
+    password: [{required: true, message: '请输入密码'}],
+    captcha: [{validator: captchaValidator, trigger: "change"}],
 })
+//效验完成
+const captchaEnd = (value: boolean) => {
+    isDone.value = value
+    if (value) {
+        formRef.value.clearValidate("captcha")
+    }
+}
 
-
-
+//提交
 const onSubmit = () => {
     formRef.value.validate((state: boolean) => {
         if (state) {
@@ -43,10 +62,11 @@ const onSubmit = () => {
                 <el-input placeholder="请输入密码"
                           v-model="formData.password"
                           type="password"
+                          show-password
                           size="large"/>
             </el-form-item>
-            <el-form-item prop="code">
-                <slider-captcha/>
+            <el-form-item prop="captcha">
+                <slider-captcha @end="captchaEnd"/>
             </el-form-item>
         </el-form>
         <el-button type="primary"
@@ -61,7 +81,6 @@ const onSubmit = () => {
 
 <style scoped lang="scss">
 .login-wrapper {
-    width: 450px;
 
     .l-title {
         font-weight: 700;
@@ -74,6 +93,9 @@ const onSubmit = () => {
         margin-bottom: 30px;
     }
 
+    .el-form-item {
+        margin-bottom: 20px;
+    }
 
     .submit-button {
         width: 100%;

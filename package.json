@@ -15,7 +15,9 @@
     "dependencies": {
         "@zmin/common-ui": "workspace:^",
         "@zmin/layouts": "workspace:^",
+        "@zmin/preferences": "workspace:^",
         "@zmin/styles": "workspace:^",
+        "@zmin/utils": "workspace:^",
         "axios": "^1.7.9",
         "browser-md5-file": "^1.1.1",
         "echarts": "^5.6.0",

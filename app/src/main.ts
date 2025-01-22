@@ -5,8 +5,9 @@ import App from './App.vue'
 import router from './router'
 
 import bootstrap from "@/bootstrap";
+import {initPreferences} from "@zmin/preferences"
 
-import "@zmin/styles"
+initPreferences({theme: {themeColor: 'black'}})
 
 
 const app = createApp(App)

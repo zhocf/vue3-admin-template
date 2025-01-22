@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import {Icon} from "@iconify/vue";
-import {computed, onMounted, ref, useTemplateRef} from "vue";
+import {computed, ref, useTemplateRef} from "vue";
+
+
+const emit = defineEmits<{
+    (e: 'start'): void;
+    (e: 'end', completed: boolean): void;
+}>();
 
 //进度条
 const sliderValue = ref<number>(0)
@@ -11,6 +17,7 @@ const getSliderSize = computed<string>(() => {
 const sliderRef = useTemplateRef<HTMLElement>("sliderBox");
 const barRef = useTemplateRef<HTMLDivElement>("barRef")
 
+let startValue = 0;
 //是否拖拽中
 const isMove = ref<boolean>(false)
 //拖拽完成
@@ -18,24 +25,36 @@ const isDone = ref<boolean>(false)
 
 
 //开始拖拽
-const onDragStart = () => {
+const onDragStart = (e: TouchEvent | MouseEvent) => {
     if (!isDone.value) {
         isMove.value = true
+        if ("touches" in e) {
+            startValue = e.touches[0].clientX
+        } else {
+            startValue = e.clientX
+        }
+        emit('start');
     }
 }
 //拖拽中
-const onDragMove = (e: MouseEvent) => {
+const onDragMove = (e: MouseEvent | TouchEvent) => {
     if (isMove.value) {
         const rect = sliderRef.value.getBoundingClientRect();
         const barWidth = barRef.value.getBoundingClientRect().width;
         //最大范围
         let maxValue = rect.width - barWidth
         //值
-        let newValue = sliderValue.value + e.movementX
+        let newValue = 0
+        if ("touches" in e) {
+            newValue = e.touches[0].clientX - startValue
+        } else {
+            newValue = e.clientX - startValue
+        }
         sliderValue.value = Math.max(0, Math.min(newValue, maxValue))
         //效验完成
         if (sliderValue.value == maxValue) {
             isDone.value = true
+            emit("end", true)
         }
     }
 }
@@ -44,6 +63,7 @@ const onDragEnd = () => {
     if (isMove.value) {
         isMove.value = false
         if (!isDone.value) {
+            emit("end", false)
             sliderValue.value = 0
         }
     }
@@ -55,15 +75,18 @@ const onDragEnd = () => {
     <div class="slider-box"
          ref="sliderBox"
          @mousemove="onDragMove"
-         @mousedown="onDragStart"
          @mouseup="onDragEnd"
-         @mouseleave="onDragEnd">
+         @mouseleave="onDragEnd"
+         @touchend="onDragEnd"
+         @touchmove="onDragMove">
         <div :class="['slider-bg',!isMove ? 'duration' : '']"
              :style="{width:getSliderSize}"/>
         <div
             :class="['slider-bar','flex-center',!isMove ? 'duration' : '']"
             :style="{left:getSliderSize}"
-            ref="barRef">
+            ref="barRef"
+            @mousedown="onDragStart"
+            @touchstart="onDragStart">
             <Icon icon="mdi:chevron-double-right" width="20"/>
         </div>
 

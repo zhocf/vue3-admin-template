@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SloganIcon from "./icon/slogan.vue"
+import {ThemeToggle} from "@zmin/layouts"
 
 interface Props {
     title?: string,
@@ -24,8 +25,15 @@ const props = withDefaults(defineProps<Props>(), {
             </div>
         </div>
         <div class="right-box flex-center">
-
-            <slot></slot>
+            <div class="bg-accent">
+                <theme-toggle/>
+            </div>
+            <div class="right-wrapper">
+                <slot></slot>
+            </div>
+            <div class="bh">
+                Copyright © 2024
+            </div>
         </div>
     </div>
 </template>
@@ -36,6 +44,7 @@ const props = withDefaults(defineProps<Props>(), {
     height: 100vh;
     display: flex;
     position: relative;
+    overflow: hidden;
 
     .logo-box {
         position: absolute;
@@ -76,9 +85,12 @@ const props = withDefaults(defineProps<Props>(), {
             position: relative;
             z-index: 2;
             height: 100%;
+            opacity: 0;
+            transform: translate(-50px);
+            animation: enter-x .3s ease-in-out .2s forwards;
 
             .slogan {
-                width: 40%;
+                width: 340px;
                 margin-bottom: 20px;
                 animation: float 5s linear infinite;
             }
@@ -93,11 +105,47 @@ const props = withDefaults(defineProps<Props>(), {
 
     .right-box {
         width: 35%;
-        flex: 0 1 auto;
         background-color: var(--background-bg);
         padding: 40px 32px;
+        position: relative;
+
+        .bg-accent {
+            position: absolute;
+            padding: 2px;
+            top: 20px;
+            right: 20px;
+            background-color: var(--background-deep);
+            border-radius: 50px;
+        }
+
+        .right-wrapper {
+            width: 100%;
+            max-width: 480px;
+            opacity: 0;
+            transform: translate(50px);
+            animation: enter-x .3s ease-in-out .2s forwards;
+        }
+
+        .bh {
+            position: absolute;
+            width: fit-content;
+            bottom: 20px;
+            font-size: 12px;
+            color: var(--text-2);
+        }
+
     }
 }
+
+@media screen and (max-width: 1100px) {
+    .left-box {
+        display: none;
+    }
+    .right-box {
+        flex: 1 1 0%;
+    }
+}
+
 
 @keyframes float {
     0% {
@@ -110,4 +158,12 @@ const props = withDefaults(defineProps<Props>(), {
         transform: translateY(0);
     }
 }
+
+@keyframes enter-x {
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 </style>

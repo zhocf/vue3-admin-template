@@ -1,0 +1,9 @@
+{
+    "include": [
+        "src",
+        "../src/helper.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
