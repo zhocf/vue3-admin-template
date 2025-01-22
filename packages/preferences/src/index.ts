@@ -1,6 +1,7 @@
 import preferencesManager from "./preferences"
-import Preferences from "./types";
+import type Preferences from "./types";
 
+export type * from './types';
 
 const preferences: Preferences = preferencesManager.getPreferences.call(preferencesManager);
 
@@ -8,10 +9,9 @@ const initPreferences = preferencesManager.initPreferences.bind(preferencesManag
 
 const updatePreferences = preferencesManager.updatePreferences.bind(preferencesManager)
 
-
 export {
     initPreferences,
     updatePreferences,
     preferences
 }
-export type * from './types';
+

@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
     .left-box {
         flex: 1 1 0;
         position: relative;
-        background-color: var(--main-bg-color);
+        background-color: rgb(var(--background-deep));
         padding: 20px;
         overflow: hidden;
 
@@ -105,7 +105,7 @@ const props = withDefaults(defineProps<Props>(), {
 
     .right-box {
         width: 35%;
-        background-color: var(--background-bg);
+        background-color: rgb(var(--card));
         padding: 40px 32px;
         position: relative;
 
@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<Props>(), {
             padding: 2px;
             top: 20px;
             right: 20px;
-            background-color: var(--background-deep);
+            background-color: rgb(var(--background-deep));
             border-radius: 50px;
         }
 

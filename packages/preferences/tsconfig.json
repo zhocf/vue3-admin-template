@@ -1,25 +1,8 @@
+
 {
     "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "@zmin/tsconfig/web.json",
     "include": [
-        "src",
-        "../utils/src/helper.d.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
-    "noImplicitAny": true,
-    "compilerOptions": {
-        "jsx": "preserve",
-        "jsxImportSource": "vue",
-        "lib": [
-            "ESNext",
-            "DOM",
-            "DOM.Iterable"
-        ],
-        "useDefineForClassFields": true,
-        "types": [
-            "vite/client"
-        ],
-        "declaration": false
-    }
+        "src"
+    ]
 }

@@ -1,7 +1,11 @@
+@import "element.scss";
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: rgb(var(--text-1));
+    transition: all 0.3s;
 }
 
 body {
@@ -11,4 +15,38 @@ body {
 body, #app {
     width: 100%;
     height: 100%;
+}
+
+::view-transition-new(root) {
+    animation: clip 0.5s ease-in;
+}
+
+::view-transition-old(root) {
+    animation: none;
+}
+
+@keyframes clip {
+    from {
+        clip-path: circle(0% at var(--x) var(--y));
+    }
+
+    to {
+        clip-path: circle(100% at var(--x) var(--y));
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/*定义滚动条轨道 圆角，滚动条白色*/
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/*定义滑块 内边框和滑块颜色 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #dcdddf;
 }

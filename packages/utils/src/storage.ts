@@ -28,7 +28,7 @@ class StorageManager {
                 }
             }
         }
-        return defaultValue
+        return defaultValue || null
     }
 
     /**

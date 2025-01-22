@@ -1,19 +1,5 @@
-[data-theme="default"] {
-    //背景色
-    --main-bg-color: #f0f2f5; //body背景颜色
-    --background-deep: rgb(241 243 246); //深色背景
-    --background-bg: rgb(255, 255, 255);
-
-    //主题色
-
-
-    //字体颜色
-    --text-1: 29, 30, 28;
-    --text-2: #71717a;
-
-    //边框
-    --border: #e4e4e7;
-
+:root {
+    --radius-base: 4px;
     //状态颜色
     --success: 87 209 136;
 }

@@ -1,8 +1,10 @@
-import Preferences from "./types";
-import {markRaw, reactive, readonly, toRaw} from "vue";
+import type Preferences from "./types";
+import {markRaw, reactive} from "vue";
 import StorageManager from "@zmin/utils/src/storage";
 import defaultPreferences from "./config";
 import {deepMerge} from "@zmin/utils";
+import type {DeepPartial} from "@zmin/utils/src/helper";
+import updateCssVariables from "./update_css";
 
 
 class PreferencesManager {
@@ -18,8 +20,7 @@ class PreferencesManager {
      * 初始化配置
      */
     initPreferences(options?: DeepPartial<Preferences>) {
-        console.log('----------1---------------')
-        const merged = deepMerge(defaultPreferences, options)
+        const merged = deepMerge({}, options, markRaw(this.state))
         this.updatePreferences(merged)
     }
 
@@ -31,11 +32,8 @@ class PreferencesManager {
         const merged = deepMerge(markRaw(this.state), updates)
         // 使用 Object.assign 保持原有的响应式对象
         Object.assign(this.state, merged);
+        updateCssVariables(this.state)
         this.savePreferences()
-    }
-
-    resetPreferences(value: number) {
-
     }
 
     /**
@@ -55,7 +53,6 @@ class PreferencesManager {
      * @returns {Preferences} 加载的偏好设置
      */
     private loadPreferences(): Preferences {
-        console.log('----------0---------------')
         let localPreferences = this.cacheStorage.getItem<Preferences>(this.cacheKey)
         return localPreferences || defaultPreferences
     }

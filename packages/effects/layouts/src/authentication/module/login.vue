@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import {SliderCaptcha} from "@zmin/common-ui"
 
 const emit = defineEmits<{
@@ -15,7 +15,7 @@ const formData = reactive({
 const isDone = ref<boolean>(false)
 
 // 自定义验证规则
-const captchaValidator = (_: any, value: any, callback: (error?: Error) => void) => {
+const captchaValidator = (_: any, _1: any, callback: (error?: Error) => void) => {
     if (!isDone.value) {
         callback(new Error("请完成验证码验证"));
     } else {

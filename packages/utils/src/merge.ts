@@ -18,7 +18,7 @@ function deepMerge(target: object, ...sources: any[]): any {
     }
 
     // 处理对象
-    const mergedObject = {...target};
+    const mergedObject: any = {...target};
 
     for (let i = 0; i < sources.length; i++) {
         const source = sources[i];

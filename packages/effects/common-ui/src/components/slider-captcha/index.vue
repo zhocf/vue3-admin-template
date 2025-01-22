@@ -28,9 +28,9 @@ const isDone = ref<boolean>(false)
 const onDragStart = (e: TouchEvent | MouseEvent) => {
     if (!isDone.value) {
         isMove.value = true
-        if ("touches" in e) {
+        if ("touches" in e && e.touches[0]) {
             startValue = e.touches[0].clientX
-        } else {
+        } else if ("clientX" in e) {
             startValue = e.clientX
         }
         emit('start');
@@ -38,16 +38,16 @@ const onDragStart = (e: TouchEvent | MouseEvent) => {
 }
 //拖拽中
 const onDragMove = (e: MouseEvent | TouchEvent) => {
-    if (isMove.value) {
+    if (isMove.value && sliderRef.value != null && barRef.value != null) {
         const rect = sliderRef.value.getBoundingClientRect();
         const barWidth = barRef.value.getBoundingClientRect().width;
         //最大范围
         let maxValue = rect.width - barWidth
         //值
         let newValue = 0
-        if ("touches" in e) {
+        if ("touches" in e && e.touches[0]) {
             newValue = e.touches[0].clientX - startValue
-        } else {
+        } else if ("clientX" in e) {
             newValue = e.clientX - startValue
         }
         sliderValue.value = Math.max(0, Math.min(newValue, maxValue))
@@ -98,9 +98,9 @@ const onDragEnd = () => {
 
 <style scoped lang="scss">
 .slider-box {
-    border: 1px solid var(--el-border-color);
-    border-radius: var(--el-border-radius-base);
-    background-color: var(--background-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-base);
+    background-color: rgb(var(--background-deep));
     width: 100%;
     height: 40px;
     position: relative;
@@ -124,7 +124,7 @@ const onDragEnd = () => {
         z-index: 3;
         left: 0;
         top: 0;
-        background-color: var(--background-bg);
+        background-color: rgb(var(--card));
         color: rgba(var(--text-1), 0.5);
         cursor: all-scroll;
     }

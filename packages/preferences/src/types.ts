@@ -1,9 +1,9 @@
+export type ThemeModeType = 'auto' | 'dark' | 'light'
 export interface ThemePreferences {
     /** 当前主题 */
-    mode: 'auto' | 'dark' | 'light'
+    mode: ThemeModeType
     //主题颜色
     themeColor: string
-
 }
 
 export default interface Preferences {
