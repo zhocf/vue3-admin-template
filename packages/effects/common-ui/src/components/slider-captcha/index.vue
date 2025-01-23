@@ -127,6 +127,7 @@ const onDragEnd = () => {
         background-color: rgb(var(--card));
         color: rgba(var(--text-1), 0.5);
         cursor: all-scroll;
+        user-select: none;
     }
 
     .slider-tip {

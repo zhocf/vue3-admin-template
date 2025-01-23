@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 import bootstrap from "@/bootstrap";
-import {initPreferences} from "@zmin/preferences"
+import {initPreferences} from "@zbm/preferences"
 
 initPreferences({theme: {themeColor: 'black'}})
 

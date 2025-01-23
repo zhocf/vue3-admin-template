@@ -1,21 +1,29 @@
 <script lang="ts" setup>
 import {Icon} from "@iconify/vue";
-import {type ThemeModeType, preferences, updatePreferences} from "@zmin/preferences"
+import {type ThemeModeType, preferences, updatePreferences} from "@zbm/preferences"
 
 
-const onChange = () => {
+const onChange = (event: MouseEvent) => {
+    let {clientX, clientY} = event
     let value: ThemeModeType = preferences.theme.mode == 'dark' ? 'light' : 'dark'
-    updatePreferences({
-        theme: {
-            mode: value
-        }
-    })
-    document.documentElement.style.setProperty('--x', '0px')
-    document.documentElement.style.setProperty('--y', '0px')
 
-    document.startViewTransition(() => {
-        document.documentElement.classList.toggle('dark')
+    let transition = document.startViewTransition(async () => {
+        updatePreferences({
+            theme: {
+                mode: value
+            }
+        })
     })
+    transition.ready.then(() => {
+        document.documentElement.animate([
+            {clipPath: `circle(0px at ${clientX}px ${clientY}px)`},
+            {clipPath: `circle(120% at ${clientX}px ${clientY}px)`}
+        ], {
+            duration: 500,
+            easing: 'ease-in',
+            pseudoElement: '::view-transition-new(root)'
+        })
+    });
 }
 
 </script>

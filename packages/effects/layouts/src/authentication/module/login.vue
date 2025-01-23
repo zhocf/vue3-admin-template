@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {reactive, ref} from "vue";
-import {SliderCaptcha} from "@zmin/common-ui"
+import {SliderCaptcha} from "@zbm/common-ui"
 
 const emit = defineEmits<{
     submit: [Record<string, string>];

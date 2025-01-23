@@ -1,9 +1,9 @@
 import type Preferences from "./types";
 import {markRaw, reactive} from "vue";
-import StorageManager from "@zmin/utils/src/storage";
+import StorageManager from "@zbm/utils/src/storage";
 import defaultPreferences from "./config";
-import {deepMerge} from "@zmin/utils";
-import type {DeepPartial} from "@zmin/utils/src/helper";
+import {deepMerge} from "@zbm/utils";
+import type {DeepPartial} from "@zbm/utils/src/helper";
 import updateCssVariables from "./update_css";
 
 

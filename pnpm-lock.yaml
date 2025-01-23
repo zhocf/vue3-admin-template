@@ -8,22 +8,28 @@ importers:
 
   .:
     dependencies:
-      '@zmin/common-ui':
+      '@zbm/common-ui':
         specifier: workspace:^
         version: link:packages/effects/common-ui
-      '@zmin/layouts':
+      '@zbm/layouts':
         specifier: workspace:^
         version: link:packages/effects/layouts
-      '@zmin/preferences':
+      '@zbm/preferences':
         specifier: workspace:^
         version: link:packages/preferences
-      '@zmin/styles':
+      '@zbm/stores':
+        specifier: workspace:^
+        version: link:packages/stores
+      '@zbm/styles':
         specifier: workspace:^
         version: link:packages/styles
-      '@zmin/tsconfig':
+      '@zbm/tsconfig':
         specifier: workspace:^
         version: link:internal/tsconfig
-      '@zmin/utils':
+      '@zbm/typings':
+        specifier: workspace:^
+        version: link:packages/typings
+      '@zbm/utils':
         specifier: workspace:^
         version: link:packages/utils
       axios:
@@ -95,6 +101,8 @@ importers:
   packages/stores: {}
 
   packages/styles: {}
+
+  packages/typings: {}
 
   packages/utils: {}
 

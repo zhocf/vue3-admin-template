@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SloganIcon from "./icon/slogan.vue"
-import {ThemeToggle} from "@zmin/layouts"
+import {ThemeToggle} from "@zbm/layouts"
 
 interface Props {
     title?: string,
@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
     .left-box {
         flex: 1 1 0;
         position: relative;
-        background-color: rgb(var(--background-deep));
+        background-color: rgba(var(--background-deep), 0.5);
         padding: 20px;
         overflow: hidden;
 
@@ -105,7 +105,7 @@ const props = withDefaults(defineProps<Props>(), {
 
     .right-box {
         width: 35%;
-        background-color: rgb(var(--card));
+        background-color: rgb(var(--background-bg));
         padding: 40px 32px;
         position: relative;
 
@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<Props>(), {
             padding: 2px;
             top: 20px;
             right: 20px;
-            background-color: rgb(var(--background-deep));
+            background-color: rgba(var(--background-deep), 0.5);
             border-radius: 50px;
         }
 

@@ -4,8 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: rgb(var(--text-1));
-    transition: all 0.3s;
+    /*color: rgb(var(--text-1));*/
 }
 
 body {
@@ -17,22 +16,9 @@ body, #app {
     height: 100%;
 }
 
-::view-transition-new(root) {
-    animation: clip 0.5s ease-in;
-}
-
-::view-transition-old(root) {
+/* stylelint-disable */
+::view-transition-old(root), ::view-transition-new(root) {
     animation: none;
-}
-
-@keyframes clip {
-    from {
-        clip-path: circle(0% at var(--x) var(--y));
-    }
-
-    to {
-        clip-path: circle(100% at var(--x) var(--y));
-    }
 }
 
 ::-webkit-scrollbar {

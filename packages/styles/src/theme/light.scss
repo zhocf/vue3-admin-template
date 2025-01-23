@@ -1,6 +1,10 @@
 [data-theme="light"] {
+
     //区域背景色
-    --background-deep: 240, 242, 245;
+    --background-bg: 255, 255, 255;
+    //区域背景深色
+    --background-deep: 219, 220, 223;
+
     //卡片色
     --card: 255, 255, 255;
 
@@ -11,4 +15,5 @@
     --text-1: 29, 30, 28;
     --text-2: #71717a;
 
+    --heavy: 226, 230, 231
 }
