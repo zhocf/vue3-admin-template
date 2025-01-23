@@ -1,3 +1,8 @@
+import {RouteRecordRaw} from "vue-router";
+
+/**
+ * 路由元信息类型
+ */
 export interface RouteMetaType {
     /**
      * 页面标题
@@ -28,3 +33,8 @@ export interface RouteMetaType {
 
 
 }
+
+export type RouteRawType = {
+    meta: RouteMetaType,
+    children?: RouteRawType[]
+} & RouteRecordRaw

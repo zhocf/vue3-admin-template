@@ -44,7 +44,6 @@ class PreferencesManager {
     }
 
     public getPreferences() {
-        console.log('----2------------')
         return this.state;
     }
 

@@ -1,9 +1,30 @@
 <script lang="ts" setup>
 import {Icon} from "@iconify/vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
+import {computed, ref} from "vue";
+import {preferences} from "@zbm/preferences";
+import {treeFilter} from "@zbm/utils/src/tree";
+import MenuItem from "./menu-item.vue";
+import type {RouteRawType} from "@zbm/typings";
 
 const route = useRoute()
-console.log(route)
+const router = useRouter()
+
+//父级路由
+let parentUrl = ref<string>('')
+
+const routeMenuList = computed<RouteRawType[]>(() => {
+    let routeList: RouteRawType[] = []
+    if (preferences.aside.layout == 'columnLayout') {
+        routeList = [...router.options.routes] as RouteRawType[];
+        parentUrl.value = ''
+    } else if (preferences.aside.layout == 'twoColumnLayout' && route.matched[0]) {
+        routeList = route.matched[0].children as RouteRawType[]
+        parentUrl.value = route.matched[0].path
+    }
+    routeList = treeFilter(routeList, (item) => item.meta?.hideMenu != true)
+    return routeList
+})
 </script>
 
 <template>
@@ -11,9 +32,13 @@ console.log(route)
         <div class="w-name">
             Zbm Admin
         </div>
-        <ul class="extra-menu_list">
+        <el-menu class="extra-menu_list">
+            <menu-item v-for="(item) in routeMenuList"
+                       :key="item.path"
+                       :base-path="parentUrl"
+                       :route-data="item"/>
+        </el-menu>
 
-        </ul>
         <div class="sidebar-footer">
             <div class="s-f_item flex-center">
                 <Icon icon="mdi:chevron-double-right" width="20"/>

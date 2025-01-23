@@ -11,7 +11,6 @@ const moduleRoute = reactive([
     ...route1,
     ...route2,
 ])
-console.log(moduleRoute)
 const router = createRouter({
     history: createWebHistory(),
     routes: moduleRoute

@@ -13,7 +13,6 @@ let routerList = computed(() => {
         return item
     })
 })
-console.log(routerList.value)
 </script>
 
 <template>
@@ -23,7 +22,7 @@ console.log(routerList.value)
                      :to="item.path"
                      active-class="mixed-menu_item-active"
                      class="mixed-menu_item  flex-column-center">
-            <Icon :icon="(item.meta?.icon || 'ce')" class="menu_icon"/>
+            <Icon :icon="(item.meta?.icon || 'icon-[fluent-mdl2--product]') as string" class="menu_icon"/>
             <span class="menu-name">
                 {{ item.meta?.menuName || '未填写' }}
             </span>

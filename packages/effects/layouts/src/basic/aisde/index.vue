@@ -15,7 +15,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     logo: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp'
 })
-const router = useRouter()
 
 </script>
 
