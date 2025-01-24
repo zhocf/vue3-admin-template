@@ -13,6 +13,6 @@ defineOptions({
 <style lang="scss" scoped>
 .zbm-tabbar {
     height: 40px;
-    background-color: blue;
+    border-bottom: 1px solid var(--border);
 }
 </style>

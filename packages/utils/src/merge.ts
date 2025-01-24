@@ -1,3 +1,8 @@
+/**
+ * 深克隆将一个或多个源对象的可枚举属性复制到目标对象
+ * @param target 目标对象
+ * @param sources 一个或多个源对象
+ */
 function deepMerge(target: object, ...sources: any[]): any {
     if (target === null || typeof target !== 'object') {
         return target;

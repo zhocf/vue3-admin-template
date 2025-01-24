@@ -30,13 +30,12 @@ const onChange = (event: MouseEvent) => {
 
 <template>
     <div class="theme-icon flex-center" @click="onChange">
-        <Icon v-if="preferences.theme.mode == 'light'"
+        <Icon v-if="preferences.theme.mode == 'dark'"
               class="light"
-              icon="iconamoon:mode-light-fill"
-              width="16px"/>
-        <Icon v-else-if="preferences.theme.mode == 'dark'" class="dark"
-              icon="iconamoon:mode-dark-fill"
-              width="16px"/>
+              icon="line-md:moon-filled-to-sunny-filled-loop-transition"/>
+        <Icon v-else-if="preferences.theme.mode == 'light'" class="dark"
+              icon="line-md:sunny-filled-loop-to-moon-filled-loop-transition"
+        />
     </div>
 </template>
 
@@ -44,9 +43,10 @@ const onChange = (event: MouseEvent) => {
 
 .theme-icon {
     padding: 7px;
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
     cursor: pointer;
+    font-size: 20px;
 
     .dark {
         color: rgba(var(--text-1), 0.9);

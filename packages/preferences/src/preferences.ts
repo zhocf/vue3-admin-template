@@ -2,9 +2,9 @@ import type Preferences from "./types";
 import {markRaw, reactive} from "vue";
 import StorageManager from "@zbm/utils/src/storage";
 import defaultPreferences from "./config";
-import {deepMerge} from "@zbm/utils";
+import {deepMerge, setThemeColor} from "@zbm/utils";
 import type {DeepPartial} from "@zbm/utils/src/helper";
-import updateCssVariables from "./update_css";
+import {updateCssVariables, useElementPlusDesignTokens} from "./update_theme";
 
 
 class PreferencesManager {
@@ -22,6 +22,7 @@ class PreferencesManager {
     initPreferences(options?: DeepPartial<Preferences>) {
         const merged = deepMerge({}, options, markRaw(this.state))
         this.updatePreferences(merged)
+        useElementPlusDesignTokens()
     }
 
     /**
@@ -33,6 +34,8 @@ class PreferencesManager {
         // 使用 Object.assign 保持原有的响应式对象
         Object.assign(this.state, merged);
         updateCssVariables(this.state)
+        //更新主题色
+        setThemeColor(merged.theme.themeColor)
         this.savePreferences()
     }
 
@@ -53,11 +56,13 @@ class PreferencesManager {
      */
     private loadPreferences(): Preferences {
         let localPreferences = this.cacheStorage.getItem<Preferences>(this.cacheKey)
-        return localPreferences || defaultPreferences
+        if (localPreferences) {
+            return deepMerge({}, defaultPreferences, localPreferences)
+        }
+        return defaultPreferences
     }
 }
 
 const preferencesManager = new PreferencesManager();
-
 
 export default preferencesManager

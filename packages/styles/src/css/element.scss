@@ -1,5 +1,4 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
-
     $input: (
         'bg-color':rgb(var(--card)),
         'border-color':var(--border),
@@ -7,6 +6,9 @@
     ),
     $border-color:(
         '':var(--border),
+    ),
+    $menu:(
+        'hover-bg-color':rgba(var(--background-deep),0.3)
     )
 );
 

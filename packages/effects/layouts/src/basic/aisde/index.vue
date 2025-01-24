@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import MixedMenu from "./mixed-menu.vue"
 import ExtraMenu from "./extra-menu.vue";
-import {useRouter} from "vue-router";
 import {preferences} from "@zbm/preferences";
+import {CollapseTransition} from "@zbm/common-ui"
 
 defineOptions({
     name: 'basicAside'
@@ -19,15 +19,17 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <aside class="basic-aside">
-        <div v-if="preferences.aside.layout =='twoColumnLayout'" class="sidebar-wrapper">
-            <div class="logo-box flex-center">
-                <img :src="props.logo"/>
+    <collapse-transition>
+        <aside v-show="preferences.aside.hideMenu" class="basic-aside">
+            <div v-if="preferences.aside.layout =='twoColumnLayout'" class="sidebar-wrapper">
+                <div class="logo-box flex-center">
+                    <img :src="props.logo"/>
+                </div>
+                <mixed-menu/>
             </div>
-            <mixed-menu/>
-        </div>
-        <extra-menu/>
-    </aside>
+            <extra-menu/>
+        </aside>
+    </collapse-transition>
 </template>
 
 <style lang="scss" scoped>

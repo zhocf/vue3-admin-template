@@ -58,7 +58,7 @@ $itemName: "mixed-menu_item";
         }
 
         &:hover {
-            color: var(--primry);
+            color: rgb(var(--primary));
             background-color: rgb(var(--heavy));
 
             .menu_icon {
@@ -68,7 +68,7 @@ $itemName: "mixed-menu_item";
     }
 
     .#{$itemName}-active {
-        background-color: var(--primry) !important;
+        background-color: rgb(var(--primary)) !important;
         color: white !important;
     }
 

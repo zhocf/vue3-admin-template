@@ -14,6 +14,15 @@ export interface AsidePreferences {
     layout: AsideLayoutType;
     /*** 是否深色*/
     isDark: boolean;
+    /*** 菜单折叠,true折叠 */
+    collapse: boolean;
+    /*** 菜单隐藏 */
+    hideMenu: boolean;
+    /*** 菜单宽度 */
+    menuWidth: number;
+    /*** 自动激活子菜单 */
+    autoActive: boolean;
+
 }
 
 

@@ -7,7 +7,11 @@ const defaultPreferences: Preferences = {
     },
     aside: {
         layout: "twoColumnLayout",
-        isDark: false
+        isDark: false,
+        collapse: false,
+        hideMenu: false,
+        menuWidth: 220,
+        autoActive: true,
     }
 }
 export default defaultPreferences
