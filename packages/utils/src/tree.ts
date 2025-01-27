@@ -63,3 +63,26 @@ export function treeFilter<T extends Object>(
     }
     return dfs(tree)
 }
+
+/**
+ * 树形结构转换成普通数组结构
+ * @param tree 树状数据
+ * @param options 配置
+ */
+export function treeToArray<T extends Object>(tree: T[], options?: TreeConfigOptions): T[] {
+    const result: T[] = []
+    let {childProps} = options || {
+        childProps: 'children'
+    }
+    const dfs = (list: T[]) => {
+        list.forEach(item => {
+            result.push(item)
+            let childArray = (item as Record<string, any>)[childProps];
+            if (item.hasOwnProperty(childProps) && Array.isArray(childArray)) {
+                dfs(childArray)
+            }
+        })
+    }
+    dfs(tree)
+    return result
+}

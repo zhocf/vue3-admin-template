@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@zbm/access':
+        specifier: workspace:^
+        version: link:packages/effects/access
       '@zbm/common-ui':
         specifier: workspace:^
         version: link:packages/effects/common-ui
@@ -91,6 +94,10 @@ importers:
   app: {}
 
   internal/tsconfig: {}
+
+  packages/effects/access: {}
+
+  packages/effects/base: {}
 
   packages/effects/common-ui: {}
 

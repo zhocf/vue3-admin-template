@@ -43,7 +43,7 @@ $itemName: "mixed-menu_item";
         aspect-ratio: 1;
         cursor: pointer;
         border-radius: 10px;
-        color: rgb(var(--text-1));
+        color: var(--aside-color);
         transition: all 0.2s;
         text-decoration: none;
 
@@ -58,8 +58,8 @@ $itemName: "mixed-menu_item";
         }
 
         &:hover {
-            color: rgb(var(--primary));
-            background-color: rgb(var(--heavy));
+            color: var(--aside-color);
+            background-color: var(--aside-item-hover);
 
             .menu_icon {
                 transform: scale(1.2);

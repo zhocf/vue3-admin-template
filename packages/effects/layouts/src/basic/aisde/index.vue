@@ -19,9 +19,17 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <collapse-transition>
-        <aside v-show="preferences.aside.hideMenu" class="basic-aside">
-            <div v-if="preferences.aside.layout =='twoColumnLayout'" class="sidebar-wrapper">
+    <collapse-transition direction="horizontal">
+        <aside v-show="!preferences.aside.hideMenu"
+               :class="{
+                    'basic-aside':true,
+                    'aside-hide': preferences.aside.hideMenu,
+                }">
+            <div v-if="preferences.aside.layout =='mixedLayout'"
+                 :class="{
+                    'sidebar-wrapper':true,
+                    'dark':preferences.aside.dark
+                }">
                 <div class="logo-box flex-center">
                     <img :src="props.logo"/>
                 </div>
@@ -36,14 +44,23 @@ const props = withDefaults(defineProps<Props>(), {
 .basic-aside {
     display: flex;
     border-right: 1px solid var(--border);
-    background-color: rgb(var(--card));
+    background-color: rgb(var(--background-bg));
     height: 100%;
 
     .sidebar-wrapper {
-        width: var(--slidebar-width);
+        min-width: var(--slidebar-width);
         display: flex;
         flex-direction: column;
         border-right: 1px solid var(--border);
+        transition: background-color 0.3s;
+        --aside-color: rgb(var(--text-1));
+        --aside-item-hover: rgb(var(--heavy));
+
+        &.dark {
+            --aside-color: white;
+            background-color: rgba(var(--aside-dark));
+            --aside-item-hover: rgb(var(--heavy), 0.2);
+        }
 
         .logo-box {
             height: 50px;
@@ -52,7 +69,6 @@ const props = withDefaults(defineProps<Props>(), {
                 width: 32px;
             }
         }
-
 
     }
 }

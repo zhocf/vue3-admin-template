@@ -1,5 +1,10 @@
 export type ThemeModeType = 'auto' | 'dark' | 'light'
 
+export interface AppPreferences {
+    radius: number
+}
+
+
 export interface ThemePreferences {
     /** 当前主题 */
     mode: ThemeModeType;
@@ -7,13 +12,17 @@ export interface ThemePreferences {
     themeColor: string;
 }
 
-export type AsideLayoutType = "columnLayout" | "twoColumnLayout"
+export type AsideLayoutType =
+    "verticalLayout" |
+    "mixedLayout" |
+    "horizontalLayout" |
+    "fullLayout"
 
 export interface AsidePreferences {
     /*** 布局模式*/
     layout: AsideLayoutType;
     /*** 是否深色*/
-    isDark: boolean;
+    dark: boolean;
     /*** 菜单折叠,true折叠 */
     collapse: boolean;
     /*** 菜单隐藏 */
@@ -28,12 +37,16 @@ export interface AsidePreferences {
 
 export default interface Preferences {
     /**
+     * 全局通用配置
+     */
+    app: AppPreferences;
+    /**
      * 主题配置
      */
-    theme: ThemePreferences
+    theme: ThemePreferences;
     /**
      * 菜单配置
      */
-    aside: AsidePreferences
+    aside: AsidePreferences;
 
 }

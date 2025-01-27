@@ -3,11 +3,18 @@ import {Icon} from "@iconify/vue";
 import {ThemeToggle} from "@zbm/layouts"
 import ColorPicker from "./color-picker.vue";
 import {preferences, updatePreferences} from "@zbm/preferences";
+import PreferencesAlert from "./preferences/index.vue";
+import {computed, ref} from "vue";
 
 defineOptions({
     name: 'basicHeader'
 })
 
+const setShow = ref<boolean>(false)
+
+/**
+ * 控制菜单显示
+ */
 const onToggleMenu = () => {
     updatePreferences({
         aside: {
@@ -15,6 +22,59 @@ const onToggleMenu = () => {
         }
     })
 }
+/**
+ * 屏幕全屏放大
+ */
+const onScreen = () => {
+    let isFullScreen = document.fullscreenElement
+    let element = document.documentElement;
+    if (isFullScreen) {
+        document.exitFullscreen().then()
+    } else {
+        element.requestFullscreen().then();
+    }
+}
+
+/**
+ * 将字符串的首字母大写
+ * @param string
+ */
+function capitalizeFirstLetter(string: string): string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/**
+ * preferences 转成 vue props
+ */
+const attrs = computed(() => {
+    const result: Record<string, any> = {}
+    for (const [key, value] of Object.entries(preferences)) {
+        for (const [subKey, subValue] of Object.entries(value)) {
+            result[`${key}${capitalizeFirstLetter(subKey)}`] = subValue;
+        }
+    }
+    return result
+})
+/**
+ * preferences 转成 vue listener
+ */
+const listen = computed(() => {
+    const result: Record<string, any> = {};
+    for (const [key, value] of Object.entries(preferences)) {
+        if (typeof value === 'object') {
+            for (const subKey of Object.keys(value)) {
+                result[`update:${key}${capitalizeFirstLetter(subKey)}`] = (
+                    val: any,
+                ) => {
+                    updatePreferences({[key]: {[subKey]: val}});
+                };
+            }
+        } else {
+            result[key] = value;
+        }
+    }
+    return result;
+})
 
 </script>
 
@@ -52,13 +112,13 @@ const onToggleMenu = () => {
             <div class="header-btn">
                 <color-picker/>
             </div>
-            <div class="header-btn">
+            <div class="header-btn" @click="setShow=!setShow">
                 <Icon icon="lucide:settings"/>
             </div>
             <div class="header-btn">
                 <theme-toggle/>
             </div>
-            <div class="header-btn">
+            <div class="header-btn" @click="onScreen">
                 <Icon icon="lucide:maximize"/>
             </div>
             <div class="header-btn">
@@ -75,6 +135,10 @@ const onToggleMenu = () => {
                 </template>
             </el-popover>
         </div>
+
+        <preferences-alert v-model="setShow"
+                           v-bind="{...attrs}"
+                           v-on="{...listen}"/>
     </header>
 </template>
 
@@ -98,7 +162,7 @@ $size: 32px;
 
         &:hover {
             background-color: var(--hover);
-            border-radius: var(--radius-base);
+            border-radius: var(--base-radius);
         }
     }
 
@@ -139,7 +203,7 @@ $size: 32px;
             .kj {
                 font-size: 12px;
                 margin-left: 10px;
-                background-color: rgb(var(--card));
+                background-color: rgb(var(--background-bg));
                 padding: 2px 6px;
                 border-radius: 5px;
             }

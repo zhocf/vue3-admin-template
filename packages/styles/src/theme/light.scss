@@ -1,12 +1,13 @@
 [data-theme="light"] {
-
-    //区域背景色
+    //卡片背景色
     --background-bg: 255, 255, 255;
     //区域背景深色
     --background-deep: 219, 220, 223;
+    //背景色
+    --overlay-content: 240, 242, 245;
 
-    //卡片色
-    --card: 255, 255, 255;
+    //侧栏深色
+    --aside-dark: 20, 22, 26;
 
     //边框
     --border: #e4e4e7;

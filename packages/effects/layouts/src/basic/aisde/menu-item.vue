@@ -46,7 +46,9 @@ const pathResolve = computed<string>(() => {
                  class="zbm-sub-menu"
                  :show-timeout="0">
         <template #title>
-            <Icon class="menu-icon" icon="gravity-ui:objects-align-left"/>
+            <Icon v-if="routeData.meta.icon"
+                  :icon="routeData.meta.icon"
+                  class="menu-icon"/>
             <span class="menu-name">{{ routeData.meta.title }}</span>
         </template>
         <menu-item v-for="item in routeData.children"
@@ -85,6 +87,7 @@ $marginBottom: 5px;
     :deep(.el-sub-menu__title) {
         border-radius: $radius;
         margin-bottom: $marginBottom;
+
     }
 }
 
@@ -107,7 +110,7 @@ $marginBottom: 5px;
 }
 
 .menu-icon {
-    font-size: 20px;
+    font-size: 18px;
     margin-right: 5px;
 }
 

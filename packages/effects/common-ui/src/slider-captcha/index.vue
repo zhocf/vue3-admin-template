@@ -99,7 +99,7 @@ const onDragEnd = () => {
 <style scoped lang="scss">
 .slider-box {
     border: 1px solid var(--border);
-    border-radius: var(--radius-base);
+    border-radius: var(--base-radius);
     background-color: rgb(var(--background-deep));
     width: 100%;
     height: 40px;
@@ -124,7 +124,7 @@ const onDragEnd = () => {
         z-index: 3;
         left: 0;
         top: 0;
-        background-color: rgb(var(--card));
+        background-color: rgb(var(--background-bg));
         color: rgba(var(--text-1), 0.5);
         cursor: all-scroll;
         user-select: none;

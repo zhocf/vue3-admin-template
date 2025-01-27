@@ -4,7 +4,7 @@ import StorageManager from "@zbm/utils/src/storage";
 import defaultPreferences from "./config";
 import {deepMerge, setThemeColor} from "@zbm/utils";
 import type {DeepPartial} from "@zbm/utils/src/helper";
-import {updateCssVariables, useElementPlusDesignTokens} from "./update_theme";
+import {updateCssVariables, useBasicRadius, useElementPlusDesignTokens} from "./update_theme";
 
 
 class PreferencesManager {
@@ -23,6 +23,7 @@ class PreferencesManager {
         const merged = deepMerge({}, options, markRaw(this.state))
         this.updatePreferences(merged)
         useElementPlusDesignTokens()
+        useBasicRadius()
     }
 
     /**

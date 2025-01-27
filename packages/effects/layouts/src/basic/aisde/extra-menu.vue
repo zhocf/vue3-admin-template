@@ -18,10 +18,10 @@ let parentUrl = ref<string>('')
  */
 const routeMenuList = computed<RouteRawType[]>(() => {
     let routeList: RouteRawType[] = []
-    if (preferences.aside.layout == 'columnLayout') {
+    if (preferences.aside.layout == 'verticalLayout') {
         routeList = [...router.options.routes] as RouteRawType[];
         parentUrl.value = ''
-    } else if (preferences.aside.layout == 'twoColumnLayout' && route.matched[0]) {
+    } else if (preferences.aside.layout == 'mixedLayout' && route.matched[0]) {
         routeList = route.matched[0].children as RouteRawType[]
         parentUrl.value = route.matched[0].path
     }
@@ -79,6 +79,7 @@ const onMenuCollapse = () => {
 <style lang="scss" scoped>
 .extra-menu {
     width: var(--extra-width);
+    min-width: var(--extra-width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -128,7 +129,7 @@ const onMenuCollapse = () => {
     }
 
     &.extra_collapse {
-        width: 65px;
+        --extra-width: 65px;
 
         .w-name {
             height: 0;
@@ -136,4 +137,10 @@ const onMenuCollapse = () => {
         }
     }
 }
+
+//.aside-hide{
+//    .extra-menu{
+//
+//    }
+//}
 </style>

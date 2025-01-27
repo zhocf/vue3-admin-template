@@ -13,6 +13,7 @@
         "packages/*"
     ],
     "dependencies": {
+        "@zbm/access": "workspace:^",
         "@zbm/common-ui": "workspace:^",
         "@zbm/layouts": "workspace:^",
         "@zbm/preferences": "workspace:^",

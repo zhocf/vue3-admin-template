@@ -31,7 +31,9 @@ function getDarkTheme(theme: string) {
     }
 }
 
-
+/**
+ * 设置element样式
+ */
 export function useElementPlusDesignTokens() {
     watchEffect(() => {
         const variables: Record<string, string> = {
@@ -47,3 +49,14 @@ export function useElementPlusDesignTokens() {
     })
 }
 
+/**
+ * 设置圆角
+ */
+export function useBasicRadius() {
+    watchEffect(() => {
+        const variables: Record<string, string> = {
+            '--base-radius': preferences.app.radius + 'rem'
+        }
+        updateCSSVariables(variables, "zbm-bg_design")
+    })
+}

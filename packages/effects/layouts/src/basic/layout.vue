@@ -2,6 +2,7 @@
 import BasicAside from "./aisde/index.vue"
 import BasicHeader from "./header/index.vue";
 import BasicTabbar from "./tabbar/index.vue";
+import BasicContent from "./content/index.vue";
 
 
 </script>
@@ -12,7 +13,7 @@ import BasicTabbar from "./tabbar/index.vue";
         <div class="zbm-main">
             <basic-header/>
             <basic-tabbar/>
-            <router-view/>
+            <basic-content/>
         </div>
     </div>
 </template>

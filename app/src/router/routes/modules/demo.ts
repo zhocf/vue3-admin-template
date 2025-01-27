@@ -33,6 +33,7 @@ const routes: RouteRawType[] = [
                 component: () => import("@/views/dashboard/test2.vue"),
                 meta: {
                     title: '测试页面3',
+                    ignore: true,
                 },
                 children: [
                     {

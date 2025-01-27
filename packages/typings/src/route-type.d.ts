@@ -21,6 +21,10 @@ export interface RouteMetaType {
      */
     activeIcon?: string;
     /**
+     * 排序
+     */
+    sort?: number;
+    /**
      * 缓存路由
      * @default false 默认不缓存
      */
@@ -30,6 +34,15 @@ export interface RouteMetaType {
      * @default false 默认不隐藏
      */
     hideMenu?: boolean;
+    /**
+     * 是否需要跳过权限效验
+     * @default false 默认不跳过效验
+     */
+    ignore?: boolean;
+    /**
+     *页面下的按钮权限
+     */
+    accessBtn?: string[]
 
 
 }
