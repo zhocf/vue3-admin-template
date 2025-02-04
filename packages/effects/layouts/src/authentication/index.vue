@@ -66,7 +66,7 @@ const props = withDefaults(defineProps<Props>(), {
     .left-box {
         flex: 1 1 0;
         position: relative;
-        background-color: rgba(var(--background-deep), 0.5);
+        background-color: rgba(var(--background-deep), 0.3);
         padding: 20px;
         overflow: hidden;
 
@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<Props>(), {
             padding: 2px;
             top: 20px;
             right: 20px;
-            background-color: rgba(var(--background-deep), 0.5);
+            background-color: rgba(var(--background-deep), 0.3);
             border-radius: 50px;
         }
 

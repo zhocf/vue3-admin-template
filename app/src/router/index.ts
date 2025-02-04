@@ -1,8 +1,8 @@
-import {reactive} from "vue";
 import {createRouter, createWebHistory} from "vue-router";
 
 import coreRouter from "./routes/core"
 import {RouteRawType} from "@zbm/typings";
+import {createRouterGuard} from "./guard";
 
 //动态路由列表
 const dynamicRoutes: RouteRawType[] = []
@@ -13,14 +13,18 @@ Object.keys(dynamicRouteFiles).forEach(key => {
     dynamicRoutes.push(...module)
 })
 
-
-const moduleRoute = reactive([
+//路由模块
+const moduleRoute = [
     ...coreRouter,
     ...dynamicRoutes
-])
+]
 const router = createRouter({
     history: createWebHistory(),
     routes: moduleRoute
 })
+/**
+ * 路由守卫
+ */
+// createRouterGuard(router)
 
 export default router

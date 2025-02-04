@@ -17,7 +17,7 @@ interface AccessState {
 }
 
 
-const useAccessStore = defineStore("zbm-access", {
+export const useAccessStore = defineStore("zbm-access", {
     state: (): AccessState => ({
         accessToken: '',
         accessCodes: [],
@@ -25,4 +25,3 @@ const useAccessStore = defineStore("zbm-access", {
     }),
     actions: {}
 })
-export default useAccessStore

@@ -8,16 +8,17 @@ const route: RouteRecordRaw[] = [
         meta: {
             title: '登录',
             hideMenu: true,
+            ignore: true,
         },
     },
-    // {
-    //     path: '/',
-    //     name: '/',
-    //     component: () => import("@/layout/basic.vue"),
-    //     meta: {
-    //         hideMenu: true,
-    //     }
-    // }
+    {
+        path: '/',
+        name: 'root',
+        redirect: '/analytics',
+        meta: {
+            hideMenu: true,
+        }
+    }
 ]
 
 export default route

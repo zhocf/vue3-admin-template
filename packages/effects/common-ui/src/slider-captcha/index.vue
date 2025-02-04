@@ -100,7 +100,7 @@ const onDragEnd = () => {
 .slider-box {
     border: 1px solid var(--border);
     border-radius: var(--base-radius);
-    background-color: rgb(var(--background-deep));
+    background-color: rgba(var(--background-deep), 0.3);
     width: 100%;
     height: 40px;
     position: relative;

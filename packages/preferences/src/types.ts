@@ -4,7 +4,6 @@ export interface AppPreferences {
     radius: number
 }
 
-
 export interface ThemePreferences {
     /** 当前主题 */
     mode: ThemeModeType;
@@ -34,6 +33,11 @@ export interface AsidePreferences {
 
 }
 
+export interface TabbarPreferences {
+    /*** 全屏 */
+    screen: boolean;
+}
+
 
 export default interface Preferences {
     /**
@@ -48,5 +52,8 @@ export default interface Preferences {
      * 菜单配置
      */
     aside: AsidePreferences;
-
+    /**
+     * tabbar配置
+     */
+    tabbar: TabbarPreferences;
 }

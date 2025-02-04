@@ -16,5 +16,8 @@ const defaultPreferences: Preferences = {
         menuWidth: 220,
         autoActive: true,
     },
+    tabbar: {
+        screen: false
+    }
 }
 export default defaultPreferences
