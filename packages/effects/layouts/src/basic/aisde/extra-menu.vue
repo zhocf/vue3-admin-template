@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import {Icon} from "@iconify/vue";
 import {useRoute, useRouter} from "vue-router";
-import {computed, ref} from "vue";
+import {computed, inject, ref} from "vue";
 import {preferences, updatePreferences} from "@zbm/preferences";
 import {treeFilter} from "@zbm/utils";
 import MenuItem from "./menu-item.vue";
-import type {RouteRawType} from "@zbm/typings";
+import type {LayoutType, RouteRawType} from "@zbm/typings";
 
 const route = useRoute()
 const router = useRouter()
-
+const layoutOptions = inject<LayoutType>('layoutOptions')!;
 //父级路由
 let parentUrl = ref<string>('')
 
@@ -42,6 +42,13 @@ const collapse = computed(() => {
     return preferences.aside.collapse
 })
 
+/**
+ * 获取布局状态
+ */
+const isVertical = computed(() => {
+    return preferences.aside.layout == 'verticalLayout'
+})
+
 const onMenuCollapse = () => {
     updatePreferences({
         aside: {
@@ -54,8 +61,9 @@ const onMenuCollapse = () => {
 
 <template>
     <div :class="{'extra-menu':true,'extra_collapse':collapse}">
-        <div class="w-name">
-            <span>Zbm Admin</span>
+        <div :class="{'w-name':true,'flex-align':isVertical}">
+            <img v-if="isVertical" :src="layoutOptions.logo"/>
+            <span v-show="!collapse">{{ layoutOptions.name }}</span>
         </div>
         <el-menu :collapse="collapse"
                  :default-active="activeMenu"
@@ -96,6 +104,12 @@ const onMenuCollapse = () => {
         border-bottom: 1px solid var(--border);
         transition: height 0.3s;
         overflow: hidden;
+        padding: 0 20px;
+
+        img {
+            width: 30px;
+            margin-right: 5px;
+        }
     }
 
     .extra-menu_list {
@@ -132,7 +146,7 @@ const onMenuCollapse = () => {
         --extra-width: 65px;
 
         .w-name {
-            height: 0;
+            //height: 0;
             border-bottom: 0;
         }
     }

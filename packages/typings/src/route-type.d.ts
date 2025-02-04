@@ -40,11 +40,20 @@ export interface RouteMetaType {
      */
     ignore?: boolean;
     /**
-     *页面下的按钮权限
+     * 页面下的按钮权限
+     * @default []
      */
     accessBtn?: string[]
-
-
+    /**
+     * 是否固定标签页
+     * @default false
+     */
+    affixTab?: boolean;
+    /**
+     * 当前路由在标签页不展现
+     * @default false
+     */
+    hideInTab?: boolean;
 }
 
 export type RouteRawType = {

@@ -2,6 +2,7 @@
 import {computed, type PropType} from "vue";
 import {type RouteRawType} from "@zbm/typings";
 import {Icon} from "@iconify/vue";
+import {preferences} from "@zbm/preferences";
 
 const props = defineProps({
     routeData: {
@@ -49,6 +50,9 @@ const pathResolve = computed<string>(() => {
             <Icon v-if="routeData.meta.icon"
                   :icon="routeData.meta.icon"
                   class="menu-icon"/>
+            <Icon v-if="!routeData.meta.icon  && preferences.aside.collapse"
+                  class="menu-icon"
+                  icon="lucide:layers"/>
             <span class="menu-name">{{ routeData.meta.title }}</span>
         </template>
         <menu-item v-for="item in routeData.children"
@@ -59,7 +63,13 @@ const pathResolve = computed<string>(() => {
 
     <router-link v-else-if="menuLevel === 2" :to="pathResolve">
         <el-menu-item :index="pathResolve" class="zbm-menu_item">
-            <Icon class="menu-icon" icon="gravity-ui:objects-align-left"/>
+            <Icon v-if="routeData.meta.icon"
+                  :icon="routeData.meta.icon"
+                  class="menu-icon"/>
+            <!--            在没有图标且折叠的情况-->
+            <Icon v-if="!routeData.meta.icon && preferences.aside.layout == 'mixedLayout' && preferences.aside.collapse"
+                  class="menu-icon"
+                  icon="lucide:layers"/>
             <template #title>
                 <span class="menu-name">{{ routeData.meta.title }}</span>
             </template>
@@ -78,7 +88,7 @@ $marginBottom: 5px;
 
 .zbm-sub-menu {
     &.is-active {
-        :deep(.el-sub-menu__title) {
+        > :deep(.el-sub-menu__title) {
             @include active;
             background-color: transparent;
         }
@@ -111,7 +121,21 @@ $marginBottom: 5px;
 
 .menu-icon {
     font-size: 18px;
-    margin-right: 5px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    width: 24px;
+}
+
+.menu-name {
+    margin-left: 3px;
+}
+
+.el-sub-menu__title, .zbm-menu_item {
+    &:hover {
+        .menu-icon {
+            transform: scale(1.1);
+        }
+    }
 }
 
 </style>

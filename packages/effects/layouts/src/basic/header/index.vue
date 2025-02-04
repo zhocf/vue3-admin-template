@@ -5,13 +5,23 @@ import ColorPicker from "./color-picker.vue";
 import {preferences, updatePreferences} from "@zbm/preferences";
 import PreferencesAlert from "./preferences/index.vue";
 import {computed, ref} from "vue";
+import {useRoute} from "vue-router";
+import {capitalizeFirstLetter} from "@zbm/utils";
+import {useTabbarStore} from "@zbm/stores";
 
 defineOptions({
     name: 'basicHeader'
 })
 
-const setShow = ref<boolean>(false)
+interface BreadCrumbType {
+    title: string;
+    icon: string;
+    path: string;
+}
 
+const route = useRoute()
+const setShow = ref<boolean>(false)
+const tabbarStore = useTabbarStore()
 /**
  * 控制菜单显示
  */
@@ -36,12 +46,19 @@ const onScreen = () => {
 }
 
 /**
- * 将字符串的首字母大写
- * @param string
+ * 刷新页面
  */
-function capitalizeFirstLetter(string: string): string {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+const onRefreshPage = ((event: Event) => {
+    let current = event.currentTarget as HTMLDivElement
+    let svg = current.querySelector("svg") as SVGSVGElement
+    svg.style.transition = 'all 0.3s'
+    svg.style.transform = `rotate(360deg)`
+    setTimeout(() => {
+        svg.style.removeProperty("transform")
+        svg.style.removeProperty("transition")
+    }, 300)
+    tabbarStore.reloadPage()
+})
 
 /**
  * preferences 转成 vue props
@@ -75,6 +92,20 @@ const listen = computed(() => {
     }
     return result;
 })
+/**
+ * 获取路由中的面包屑
+ */
+const getBreadCrumb = computed<BreadCrumbType[]>(() => {
+    let matched = route.matched;
+    return matched.map(item => {
+        const meta = item.meta as any;
+        return {
+            title: meta?.title,
+            icon: meta?.icon || '',
+            path: item.path,
+        };
+    });
+});
 
 </script>
 
@@ -86,16 +117,14 @@ const listen = computed(() => {
         </div>
         <!--        面包屑-->
         <el-breadcrumb class="zbm-breadcrumb" separator="/">
-            <el-breadcrumb-item>
+            <el-breadcrumb-item v-for="item in getBreadCrumb"
+                                :key="item.path"
+                                :to="item.path">
                 <div class="breadcrumb-item flex-align">
-                    <Icon icon="lucide:layout-dashboard" width="16"/>
-                    <span>概括</span>
-                </div>
-            </el-breadcrumb-item>
-            <el-breadcrumb-item>
-                <div class="breadcrumb-item flex-align">
-                    <Icon icon="lucide:layout-dashboard" width="16"/>
-                    <span>测试</span>
+                    <Icon v-if="item.icon"
+                          :icon="item.icon"
+                          width="16"/>
+                    <span>{{ item.title }}</span>
                 </div>
             </el-breadcrumb-item>
         </el-breadcrumb>
@@ -121,7 +150,7 @@ const listen = computed(() => {
             <div class="header-btn" @click="onScreen">
                 <Icon icon="lucide:maximize"/>
             </div>
-            <div class="header-btn">
+            <div class="header-btn" @click="onRefreshPage">
                 <Icon icon="mdi:refresh" width="20"/>
             </div>
 
@@ -168,6 +197,20 @@ $size: 32px;
 
     .zbm-breadcrumb {
         margin-left: 10px;
+
+        :deep(.el-breadcrumb__inner.is-link) {
+            font-weight: 500;
+            color: var(--text-2);
+
+            &:hover {
+                color: rgb(var(--text-1));
+            }
+        }
+
+
+        :deep(.el-breadcrumb__item:last-child .el-breadcrumb__inner) {
+            color: rgb(var(--text-1));
+        }
 
         .breadcrumb-item {
             span {

@@ -16,7 +16,8 @@ const routes: RouteRawType[] = [
                 name: 'test12',
                 component: () => import("@/views/dashboard/test1.vue"),
                 meta: {
-                    title: '测试页面1'
+                    title: '测试页面1',
+                    icon: 'tabler:presentation',
                 }
             },
             {

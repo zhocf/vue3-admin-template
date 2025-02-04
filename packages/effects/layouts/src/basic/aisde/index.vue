@@ -3,18 +3,13 @@ import MixedMenu from "./mixed-menu.vue"
 import ExtraMenu from "./extra-menu.vue";
 import {preferences} from "@zbm/preferences";
 import {CollapseTransition} from "@zbm/common-ui"
+import {inject} from "vue";
+import type {LayoutType} from "@zbm/typings";
 
 defineOptions({
     name: 'basicAside'
 })
-
-interface Props {
-    logo?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-    logo: 'https://unpkg.com/@vbenjs/static-source@0.1.7/source/logo-v1.webp'
-})
+const layoutOptions = inject<LayoutType>('layoutOptions');
 
 </script>
 
@@ -31,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
                     'dark':preferences.aside.dark
                 }">
                 <div class="logo-box flex-center">
-                    <img :src="props.logo"/>
+                    <img :src="layoutOptions?.logo"/>
                 </div>
                 <mixed-menu/>
             </div>
@@ -63,7 +58,7 @@ const props = withDefaults(defineProps<Props>(), {
         }
 
         .logo-box {
-            height: 50px;
+            height: 60px;
 
             img {
                 width: 32px;

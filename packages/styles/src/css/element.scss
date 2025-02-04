@@ -17,3 +17,18 @@
 .el-input__wrapper {
     transition: all 0.3s;
 }
+
+.el-menu--popup-container {
+    --el-menu-item-height: 40px;
+
+    .el-menu--popup {
+        padding: 10px;
+        border-radius: 10px;
+
+        .el-sub-menu__title {
+            padding-left: 8px;
+        }
+    }
+
+}
+

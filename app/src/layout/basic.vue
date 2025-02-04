@@ -3,7 +3,9 @@ import {BasicLayout} from "@zbm/layouts";
 </script>
 
 <template>
-    <basic-layout>
+    <basic-layout
+        logo="https://admin.taolive.top/img/vite.svg"
+        name="测试后台">
 
     </basic-layout>
 </template>
