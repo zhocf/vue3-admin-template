@@ -45,8 +45,10 @@ const pathResolve = computed<string>(() => {
                  :hide-timeout="0"
                  :index="pathResolve"
                  class="zbm-sub-menu"
+
                  :show-timeout="0">
         <template #title>
+
             <Icon v-if="routeData.meta.icon"
                   :icon="routeData.meta.icon"
                   class="menu-icon"/>
@@ -55,6 +57,8 @@ const pathResolve = computed<string>(() => {
                   icon="lucide:layers"/>
             <span class="menu-name">{{ routeData.meta.title }}</span>
         </template>
+
+
         <menu-item v-for="item in routeData.children"
                    :key="pathResolve"
                    :base-path="pathResolve"
@@ -82,8 +86,8 @@ $radius: 10px;
 $marginBottom: 5px;
 
 @mixin active {
-    color: var(--el-color-primary);
-    background-color: var(--el-color-primary-light-9);
+    color: rgba(var(--primary)) !important;
+    background-color: rgba(var(--primary), 0.2);
 }
 
 .zbm-sub-menu {
@@ -97,7 +101,10 @@ $marginBottom: 5px;
     :deep(.el-sub-menu__title) {
         border-radius: $radius;
         margin-bottom: $marginBottom;
+    }
 
+    :deep(.el-sub-menu__icon-arrow) {
+        font-size: 14px;
     }
 }
 
@@ -130,8 +137,13 @@ $marginBottom: 5px;
     margin-left: 3px;
 }
 
-.el-sub-menu__title, .zbm-menu_item {
+/**
+    菜单悬样式
+ */
+:deep(.el-sub-menu__title), .zbm-menu_item {
     &:hover {
+        color: var(--menu-hover-color);
+
         .menu-icon {
             transform: scale(1.1);
         }

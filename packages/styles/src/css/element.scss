@@ -8,7 +8,9 @@
         '':var(--border),
     ),
     $menu:(
-        'hover-bg-color':rgba(var(--background-deep),0.3)
+        'hover-bg-color':rgba(var(--accent)),
+        'bg-color':rgba(var(--background-bg)),
+        'text-color':rgba(var(--text-1))
     )
 );
 
@@ -29,6 +31,9 @@
             padding-left: 8px;
         }
     }
-
 }
 
+.el-popper.is-light {
+    border: none;
+    background: transparent;
+}

@@ -6,6 +6,7 @@ import {preferences, updatePreferences} from "@zbm/preferences";
 import {treeFilter} from "@zbm/utils";
 import MenuItem from "./menu-item.vue";
 import type {LayoutType, RouteRawType} from "@zbm/typings";
+import {CollapseTransition} from "@zbm/common-ui"
 
 const route = useRoute()
 const router = useRouter()
@@ -43,12 +44,32 @@ const collapse = computed(() => {
 })
 
 /**
- * 获取布局状态
+ * 菜单模式
  */
-const isVertical = computed(() => {
-    return preferences.aside.layout == 'verticalLayout'
+const menuLayout = computed(() => {
+    return preferences.aside.layout
 })
-
+/**
+ * 隐藏logo全部
+ */
+const hiddenHead = computed(() => {
+    return menuLayout.value == 'mixedLayout' && collapse.value;
+})
+/**
+ * 隐藏logo名称
+ */
+const hiddenLogoName = computed(() => {
+    return menuLayout.value == 'verticalLayout' && collapse.value;
+})
+/**
+ * 是否菜单深色
+ */
+const isDark = computed(() => {
+    return menuLayout.value == 'verticalLayout' && preferences.aside.dark
+})
+/**
+ * 控制收缩
+ */
 const onMenuCollapse = () => {
     updatePreferences({
         aside: {
@@ -57,18 +78,26 @@ const onMenuCollapse = () => {
     })
 }
 
+
 </script>
 
 <template>
-    <div :class="{'extra-menu':true,'extra_collapse':collapse}">
-        <div :class="{'w-name':true,'flex-align':isVertical}">
-            <img v-if="isVertical" :src="layoutOptions.logo"/>
-            <span v-show="!collapse">{{ layoutOptions.name }}</span>
-        </div>
+    <div :class="{'extra-menu':true,'extra_collapse':collapse,'dark':isDark}">
+        <collapse-transition direction="vertical">
+            <div v-show="!hiddenHead">
+                <div class="w-name">
+                    <img v-if="menuLayout == 'verticalLayout'" :src="layoutOptions.logo"/>
+                    <span v-show="!hiddenLogoName">{{ layoutOptions.name }}</span>
+                </div>
+            </div>
+
+        </collapse-transition>
+
         <el-menu :collapse="collapse"
                  :default-active="activeMenu"
                  :hide-timeout="100"
                  :show-timeout="100"
+                 :popper-class="[isDark ? 'dark':'','basic-popper_menu']"
                  class="extra-menu_list">
             <menu-item v-for="(item) in routeMenuList"
                        :key="item.path"
@@ -91,20 +120,21 @@ const onMenuCollapse = () => {
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s;
+    transition: all 0.3s;
     overflow: hidden;
-
+    background-color: rgb(var(--background-bg));
 
     .w-name {
         height: var(--header-height);
-        text-align: center;
+        display: flex;
+        align-items: center;
         line-height: var(--header-height);
         font-size: 16px;
         font-weight: 700;
-        border-bottom: 1px solid var(--border);
-        transition: height 0.3s;
         overflow: hidden;
+        white-space: nowrap;
         padding: 0 20px;
+        color: rgba(var(--text-1));
 
         img {
             width: 30px;
@@ -117,10 +147,6 @@ const onMenuCollapse = () => {
         width: 100%;
         padding: 10px;
         border-right: 0;
-        --el-menu-base-level-padding: 10px;
-        --el-menu-level-padding: 15px;
-        --el-menu-item-height: 45px;
-        --el-menu-sub-item-height: 45px;
         transition: all 10ms;
     }
 
@@ -132,12 +158,12 @@ const onMenuCollapse = () => {
             width: 30px;
             aspect-ratio: 1;
             border-radius: 4px;
-            background-color: rgba(var(--background-deep), 0.4);
+            background-color: rgba(var(--background-deep), 0.3);
             color: var(--text-2);
             transition: all 0.2s;
 
             &:hover {
-                background-color: rgba(var(--background-deep), 1);
+                background-color: rgba(var(--background-deep), 0.7);
             }
         }
     }
@@ -152,9 +178,4 @@ const onMenuCollapse = () => {
     }
 }
 
-//.aside-hide{
-//    .extra-menu{
-//
-//    }
-//}
 </style>

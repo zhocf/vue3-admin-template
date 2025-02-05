@@ -14,7 +14,7 @@ export function updateCssVariables(preferences: Preferences) {
     const theme = preferences?.theme ?? {};
     if (Reflect.has(theme, "mode")) {
         let theme = getDarkTheme(preferences.theme.mode)
-        root.setAttribute("data-theme", theme)
+        root.className = theme
     }
 }
 

@@ -1,11 +1,10 @@
-[data-theme="dark"] {
-    --accent: 46, 48, 51;
-
-    //区域背景色
-    --background-bg: 20, 22, 26;
+.dark {
+    //卡片背景色
+    --background-bg: 12, 10, 9;
     //区域背景深色
     --background-deep: 20, 22, 26;
-
+    //背景色
+    --overlay-content: 240, 242, 245;
 
     //卡片色
     --card: 29, 30, 31;
@@ -14,6 +13,8 @@
     --border: #36363a;
 
     //字体
-    --text-1: 255, 255, 255;
+    --text-1: 242, 242, 242;
     --text-2: #a1a1aa;
+    //悬浮色
+    --accent: 41, 37, 36;
 }

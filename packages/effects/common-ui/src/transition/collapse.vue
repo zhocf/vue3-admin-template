@@ -27,7 +27,6 @@ const beforeEnter = (el: RendererElement) => {
     el.dataset.oldPaddingRight = el.style.paddingRight;
     el.dataset.oldPaddingTop = el.style.paddingTop;
     el.dataset.oldPaddingBottom = el.style.paddingBottom;
-
     if (props.direction === "horizontal") {
         if (el.style.width) {
             el.dataset.elExistsWidth = el.style.width;
@@ -89,7 +88,6 @@ const beforeLeave = (el: RendererElement) => {
     el.dataset.oldPaddingRight = el.style.paddingRight;
     el.dataset.oldPaddingTop = el.style.paddingTop;
     el.dataset.oldPaddingBottom = el.style.paddingBottom;
-
     if (props.direction === "horizontal") {
         el.style.maxWidth = `${el.scrollWidth}px`;
     } else {
@@ -131,6 +129,6 @@ const leave = (el: RendererElement) => {
 /* 过渡动画 */
 .zbm-collapse-enter-active,
 .zbm-collapse-leave-active {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out !important;
 }
 </style>

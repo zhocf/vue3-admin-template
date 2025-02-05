@@ -136,7 +136,7 @@ const setTabbarScreen = () => {
             height: 100%;
             padding-bottom: 4px;
             position: relative;
-            --active-color: rgba(var(--primary), 0.2) !important;
+            --active-color: rgba(var(--primary), 0.15) !important;
 
             .round-svg {
                 position: absolute;
