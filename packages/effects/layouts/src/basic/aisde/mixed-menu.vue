@@ -3,8 +3,9 @@ import {Icon} from "@iconify/vue";
 import {useRouter} from "vue-router";
 import {computed, inject} from "vue";
 import {preferences} from "@zbm/preferences";
-import type {MenuProps} from "./type";
+import type {MenuProps} from "../type";
 
+let w = 15
 const router = useRouter()
 const menuOptions = inject<MenuProps>('menuOptions');
 /**

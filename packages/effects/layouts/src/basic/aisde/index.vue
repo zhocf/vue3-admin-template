@@ -4,12 +4,11 @@ import ExtraMenu from "./extra-menu.vue";
 import {preferences} from "@zbm/preferences";
 import {CollapseTransition} from "@zbm/common-ui"
 import {computed, provide} from "vue";
-import type {MenuProps} from "./type";
+import type {MenuProps} from "../type";
 
 defineOptions({
     name: 'basicAside'
 })
-
 const props = withDefaults(defineProps<MenuProps>(), {
     name: '',
     logo: ''

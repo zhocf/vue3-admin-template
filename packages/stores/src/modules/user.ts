@@ -9,7 +9,7 @@ interface UserState {
     account: string
 }
 
-export const useUserStore = defineStore("zbm-user", {
+export const useUserStore = defineStore("zbm-admin-user", {
     state: (): UserState => ({
         avatar: 'https://taolive.top/api/assets/1/acg/konanchan/a9d44522760ab3db4132421357f2e532.jpg?size=500',
         name: 'Zbm',

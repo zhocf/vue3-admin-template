@@ -1,14 +1,6 @@
 {
     "name": "@zbm/common-ui",
     "version": "1.0.0",
-    "description": "> TODO: description",
     "license": "ISC",
-    "main": "src/index.ts",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/zhocf/vue3-admin-template.git"
-    },
-    "bugs": {
-        "url": "https://github.com/zhocf/vue3-admin-template/issues"
-    }
+    "main": "src/index.ts"
 }

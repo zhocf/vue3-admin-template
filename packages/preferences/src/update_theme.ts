@@ -45,7 +45,7 @@ export function useElementPlusDesignTokens() {
             "--el-color-primary-light-8": getRgbColor(preferences.theme.themeColor, 0.2),
             "--el-color-primary-light-9": getRgbColor(preferences.theme.themeColor, 0.1),
         }
-        updateCSSVariables(variables, "zbm-element_design")
+        updateCSSVariables(variables, "zbm-admin-element_design")
     })
 }
 
@@ -57,6 +57,6 @@ export function useBasicRadius() {
         const variables: Record<string, string> = {
             '--base-radius': preferences.app.radius + 'rem'
         }
-        updateCSSVariables(variables, "zbm-bg_design")
+        updateCSSVariables(variables, "zbm-admin-bg_design")
     })
 }

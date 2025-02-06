@@ -17,7 +17,7 @@ interface AccessState {
 }
 
 
-export const useAccessStore = defineStore("zbm-access", {
+export const useAccessStore = defineStore("zbm-admin-access", {
     state: (): AccessState => ({
         accessToken: '',
         accessCodes: [],

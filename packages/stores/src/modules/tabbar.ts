@@ -24,7 +24,7 @@ interface TabbarState {
 /**
  * tabbar列表
  */
-export const useTabbarStore = defineStore("zbm-tabbar", {
+export const useTabbarStore = defineStore("zbm-admin-tabbar", {
     persist: {
         // 持久化
         pick: ['tabs'],

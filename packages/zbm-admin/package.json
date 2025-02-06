@@ -1,0 +1,24 @@
+{
+    "name": "zbm-admin",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs"
+        },
+        "./store": {
+            "require": "./dist/store.js",
+            "import": "./dist/store.mjs"
+        },
+        "./utils": {
+            "require": "./dist/utils.js",
+            "import": "./dist/utils.mjs"
+        }
+    },
+    "dependencies": {
+        "@zbm/store": "1.0.0",
+        "@zbm/utils": "1.0.0"
+    }
+}
