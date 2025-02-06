@@ -40,7 +40,3 @@ a {
     background-color: #dcdddf;
 }
 
-.tabbar-popover {
-    --el-popover-padding: 7px 5px;
-    --el-popover-border-radius: 10px;
-}

@@ -112,7 +112,7 @@ const setTabbarScreen = () => {
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .zbm-tabbar {
     height: var(--tababr-height);
     border-bottom: 1px solid var(--border);
@@ -225,31 +225,35 @@ const setTabbarScreen = () => {
     }
 }
 
-.tabbar-popover_item {
-    padding: 7px 7px;
-    cursor: pointer;
-    color: rgba(var(--text-1), 0.8);
-    border-radius: var(--base-radius);
-    font-size: 14px;
+.tabbar-popover {
+    --el-popover-padding: 7px 5px;
+    --el-popover-border-radius: 10px;
 
-    &:hover {
-        background-color: rgba(var(--background-deep), 0.3);
-    }
+    .tabbar-popover_item {
+        padding: 7px 7px;
+        cursor: pointer;
+        color: rgba(var(--text-1), 0.8);
+        border-radius: var(--base-radius);
+        font-size: 14px;
 
-    & + .tabbar-popover_item {
-        margin-top: 3px;
-    }
+        &:hover {
+            background-color: rgba(var(--background-deep), 0.3);
+        }
 
-    &.tabbar-popover_disable {
-        opacity: 0.5;
-        cursor: context-menu;
-        pointer-events: none;
-    }
+        & + .tabbar-popover_item {
+            margin-top: 3px;
+        }
 
-    svg {
-        margin-right: 5px;
+        &.tabbar-popover_disable {
+            opacity: 0.5;
+            cursor: context-menu;
+            pointer-events: none;
+        }
+
+        svg {
+            margin-right: 5px;
+        }
     }
 }
-
 
 </style>

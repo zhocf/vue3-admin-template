@@ -2,11 +2,11 @@
 import {Icon} from "@iconify/vue";
 import {useRouter} from "vue-router";
 import {computed, inject} from "vue";
-import type {LayoutType} from "@zbm/typings";
 import {preferences} from "@zbm/preferences";
+import type {MenuProps} from "./type";
 
 const router = useRouter()
-const layoutOptions = inject<LayoutType>('layoutOptions');
+const menuOptions = inject<MenuProps>('menuOptions');
 /**
  * 是否菜单深色
  */
@@ -27,7 +27,7 @@ let routerList = computed(() => {
 <template>
     <div :class="['sidebar-wrapper',isDark ? 'dark':'']">
         <div class="logo-box flex-center">
-            <img :src="layoutOptions?.logo" alt=""/>
+            <img :src="menuOptions?.logo" alt=""/>
         </div>
         <!--        菜单列表-->
         <ul class="mixed-menu">

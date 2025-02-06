@@ -5,12 +5,13 @@ import {computed, inject, ref} from "vue";
 import {preferences, updatePreferences} from "@zbm/preferences";
 import {treeFilter} from "@zbm/utils";
 import MenuItem from "./menu-item.vue";
-import type {LayoutType, RouteRawType} from "@zbm/typings";
+import type {RouteRawType} from "@zbm/typings";
 import {CollapseTransition} from "@zbm/common-ui"
+import type {MenuProps} from "../type";
 
 const route = useRoute()
 const router = useRouter()
-const layoutOptions = inject<LayoutType>('layoutOptions')!;
+const menuOptions = inject<MenuProps>('menuOptions')!;
 //父级路由
 let parentUrl = ref<string>('')
 
@@ -86,8 +87,8 @@ const onMenuCollapse = () => {
         <collapse-transition direction="vertical">
             <div v-show="!hiddenHead">
                 <div class="w-name">
-                    <img v-if="menuLayout == 'verticalLayout'" :src="layoutOptions.logo"/>
-                    <span v-show="!hiddenLogoName">{{ layoutOptions.name }}</span>
+                    <img v-if="menuLayout == 'verticalLayout'" :src="menuOptions.logo"/>
+                    <span v-show="!hiddenLogoName">{{ menuOptions.name }}</span>
                 </div>
             </div>
 
@@ -97,7 +98,7 @@ const onMenuCollapse = () => {
                  :default-active="activeMenu"
                  :hide-timeout="100"
                  :show-timeout="100"
-                 :popper-class="[isDark ? 'dark':'','basic-popper_menu']"
+                 :popper-class="[isDark ? 'dark': '','basic-popper_menu'].join(' ')"
                  class="extra-menu_list">
             <menu-item v-for="(item) in routeMenuList"
                        :key="item.path"

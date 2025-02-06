@@ -8,6 +8,8 @@ import {computed, ref} from "vue";
 import {useRoute} from "vue-router";
 import {capitalizeFirstLetter} from "@zbm/utils";
 import {useTabbarStore} from "@zbm/stores";
+import type {HeaderProps} from "../type";
+import UserDropdown from "./user-dropdown.vue";
 
 defineOptions({
     name: 'basicHeader'
@@ -22,6 +24,12 @@ interface BreadCrumbType {
 const route = useRoute()
 const setShow = ref<boolean>(false)
 const tabbarStore = useTabbarStore()
+
+
+const props = withDefaults(defineProps<HeaderProps>(), {
+    menu: []
+})
+
 /**
  * 控制菜单显示
  */
@@ -107,6 +115,7 @@ const getBreadCrumb = computed<BreadCrumbType[]>(() => {
     });
 });
 
+
 </script>
 
 <template>
@@ -153,18 +162,11 @@ const getBreadCrumb = computed<BreadCrumbType[]>(() => {
             <div class="header-btn" @click="onRefreshPage">
                 <Icon icon="mdi:refresh" width="20"/>
             </div>
+            <slot name="user-dropdown">
+                <user-dropdown :menu="props.menu"/>
+            </slot>
 
-            <el-popover>
-                <template #reference>
-                    <div class="avatar">
-                        <el-avatar
-                            src="https://taolive.top/api/assets/1/acg/原/3637c519cb060a4694e1c1debe0054f2.jpg?size=500"
-                            style="width: 100%;height: 100%"/>
-                    </div>
-                </template>
-            </el-popover>
         </div>
-
         <preferences-alert v-model="setShow"
                            v-bind="{...attrs}"
                            v-on="{...listen}"/>
@@ -252,32 +254,8 @@ $size: 32px;
             }
         }
 
-        .avatar {
-            width: $size;
-            height: $size;
-            border-radius: 50%;
-            margin-left: 10px;
-            position: relative;
-            margin-right: 5px;
-            cursor: pointer;
-
-            &:before {
-                content: '';
-                background-color: #57d188;
-                width: 10px;
-                aspect-ratio: 1;
-                position: absolute;
-                border-radius: 50%;
-                bottom: 2px;
-                right: 0;
-                border: 2px solid white;
-            }
-
-            &:hover {
-                box-shadow: 0 0 0 5px rgba(var(--background-deep), 0.5);
-            }
-        }
     }
 
 }
+
 </style>

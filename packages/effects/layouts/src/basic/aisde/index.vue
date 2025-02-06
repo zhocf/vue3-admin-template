@@ -3,10 +3,16 @@ import MixedMenu from "./mixed-menu.vue"
 import ExtraMenu from "./extra-menu.vue";
 import {preferences} from "@zbm/preferences";
 import {CollapseTransition} from "@zbm/common-ui"
-import {computed} from "vue";
+import {computed, provide} from "vue";
+import type {MenuProps} from "./type";
 
 defineOptions({
     name: 'basicAside'
+})
+
+const props = withDefaults(defineProps<MenuProps>(), {
+    name: '',
+    logo: ''
 })
 
 /**
@@ -16,7 +22,7 @@ const menuLayout = computed(() => {
     return preferences.aside.layout
 })
 
-
+provide("menuOptions", props)
 </script>
 
 <template>
@@ -75,6 +81,8 @@ const menuLayout = computed(() => {
 
 
 .basic-popper_menu {
+    background-color: transparent !important;
+    border: none !important;
     @include menuStyle;
 
     .el-menu {
